@@ -1,0 +1,51 @@
+// cid.five > fiveReference ? change: ;
+
+// cid.five - change
+
+// payment = 30
+// price = 15
+// change_due: 15
+// ---------------
+
+// total = getTotal(cid)
+// change_due = payment - price
+// if (change_due < 0) "INSUFFICIENT_PAYMENT"
+
+// total < change_due
+// return {status: "INSUFFICIENT_FUNDS", change: []}
+
+// change_due >= 100 -------> false
+// change_due >= 20 ------->  false
+// change_due >= 10 -------> true
+
+// change_due >= reference100 -------> false
+// change_due >= reference20 ------->  false
+// change_due >= reference10 -------> true
+
+// cid.TEN = cid.TEN ? -10 : 0
+
+// if(cid.TEN)
+// loopCallback(reference10) --->  return { key : value }
+// value += reference10
+// return {"Ten": value }
+
+// <change_sum> = take one <10>
+// change: {"TEN": 10 }
+// change: { key : value }
+
+// <change_sum> = 10
+
+// change_due = change_due - <change_sum>
+//      5     =   15       -  10
+// change_due === 5
+
+// change_due >= 10 reference --------> false
+// change_due >= 5 reference --------> true
+
+// <change_sum> += take one <5>
+// <change>
+
+// <change_due> = <change_due> - <change_sum>
+//      0       =      5       -     5
+
+// <change_due> = 0
