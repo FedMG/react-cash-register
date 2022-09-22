@@ -5,10 +5,10 @@ function checkCashRegister(price, payment, cid) {
   const total = getTotal(cid);
   let change_due = payment - price;
 
-  if (change_due < 0) return { status: 'INSUFFICIENT_PAYMENT', change: [0] };
+  if (change_due < 0) return { status: 'INSUFFICIENT_PAYMENT', change: [] };
 
   if (total < change_due) {
-    return { status: 'INSUFFICIENT_FUNDS', change: [...cid] };
+    return { status: 'INSUFFICIENT_FUNDS', change: [] };
   } else if (total === change_due) {
     return { status: 'CLOSED', change: [...cid] };
   }
@@ -16,7 +16,11 @@ function checkCashRegister(price, payment, cid) {
   const changeType = checkChangeDue(change_due, cid);
 
   // change_due === 0
-  if (!changeType[1]) {
+  if (!changeType[0]) {
+    return { status: 'INSUFFICIENT_FUNDS', change: [] };
+  }
+
+  if (!Number(changeType[1])) {
     return { status: 'OPEN', change: swapToArray(changeType[0]) };
   }
 }

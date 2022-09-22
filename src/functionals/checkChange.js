@@ -1,11 +1,13 @@
 import coinRef from './coin-reference.js';
+import {swapToObject} from './utils.js'
 
 const checkChangeDue = (change_due, cid) => {
   const change = {};
   const cashKeys = Object.keys(coinRef);
+  const cidRef = swapToObject(cid)
 
   for (let i = cashKeys.length - 1; i >= 0; i--) {
-    if (change_due >= coinRef[cashKeys[i]]) {
+    if (change_due >= coinRef[cashKeys[i]] && !cidRef[cashKeys[i]] == 0) {
       if (!change[cashKeys[i]]) {
         change[cashKeys[i]] = 0;
       }
@@ -13,17 +15,19 @@ const checkChangeDue = (change_due, cid) => {
       change[cashKeys[i]] += coinRef[cashKeys[i]];
 
       // cash-in-drawer is substracted acording to the coin
-      cid[cashKeys[i]] -= coinRef[cashKeys[i]];
+      cidRef[cashKeys[i]] -= coinRef[cashKeys[i]];
 
       // change due is reduced
       change_due -= coinRef[cashKeys[i]];
+      change_due = change_due.toFixed(2);
 
-      if (change_due === 0) {
-        return [change, change_due];
+      if (Number(change_due) === 0) {
+        return [change, change_due, cidRef];
       }
       i = i + 1;
     }
   }
+  return []
 };
 
 export default checkChangeDue;
