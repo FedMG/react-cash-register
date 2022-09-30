@@ -1,10 +1,10 @@
 import coinRef from './coin-reference.js';
-import {swapToObject} from './utils.js'
+import { swapToObject } from './utils.js';
 
 const checkChangeDue = (change_due, cid) => {
   const change = {};
   const cashKeys = Object.keys(coinRef);
-  const cidRef = swapToObject(cid)
+  const cidRef = swapToObject(cid);
 
   for (let i = cashKeys.length - 1; i >= 0; i--) {
     if (change_due >= coinRef[cashKeys[i]] && !cidRef[cashKeys[i]] == 0) {
@@ -27,7 +27,7 @@ const checkChangeDue = (change_due, cid) => {
       i = i + 1;
     }
   }
-  return []
+  return [];
 };
 
 export default checkChangeDue;

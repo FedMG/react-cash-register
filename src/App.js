@@ -1,26 +1,68 @@
 import React from 'react';
 import checkCashRegister from './functionals/checkCash.js';
+import { Button } from './components/Button.js';
+import { buttons } from './reference/buttons.js';
+import { outputDiv, cidStyle } from './styles/cid.js';
+import { evaluate } from 'mathjs';
+
+const { useState } = React;
 
 export default function App() {
-  return <div></div>;
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
+
+  const getResult = () => {
+    console.log(input.length);
+    setOutput(evaluate(input));
+
+    // if (input.length === 3) {
+    //   setOutput(evaluate(...input));
+    // }
+  };
+
+  const buttonHandler = (e) => {
+    if (!isNaN(e.target.value)) {
+      setInput((prev) => prev + e.target.value);
+    }
+
+    setInput([...input, e.target.value]);
+    // console.log(!isNaN(e.target.value));
+  };
+
+  return (
+    <div>
+      <div>
+        <div style={outputDiv}>
+          <span>{output}</span>
+          <span>{input}</span>
+        </div>
+      </div>
+
+      <div style={cidStyle}>
+        <div style={{ gridRow: '3' }}>
+          {buttons.symbols.map((symbol) => (
+            <Button
+              key={symbol}
+              name={symbol}
+              handler={symbol === '=' ? getResult : buttonHandler}
+            />
+          ))}
+        </div>
+        <div style={{ gridRow: '4' }}>
+          {buttons.numbers.map((number) => (
+            <Button key={number} name={number} handler={buttonHandler} />
+          ))}
+        </div>
+        <div style={{ gridRow: '5' }}>
+          <Button name={'.'} />
+          <Button name={','} />
+        </div>
+        <div style={{ gridRow: '6' }}>
+          {buttons.options.map((option) => (
+            <Button key={option} name={option} handler={() => ''} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
-
-// console.log(
-//   checkCashRegister(18.5, 20, [
-//     ['PENNY', 1.01],
-//     ['NICKEL', 2.05],
-//     ['DIME', 3.1],
-//     ['QUARTER', 4.25],
-//     ['ONE', 90],
-//     ['FIVE', 55],
-//     ['TEN', 20],
-//     ['TWENTY', 60],
-//     ['ONE HUNDRED', 100],
-//   ])
-// );
-
-// console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]))
-
-// console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]))
-
-// console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]))
