@@ -1,8 +1,40 @@
 export const buttons = {
-  numbers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-  symbols: ['+', '-', '*', '/', '=', ',', '.'],
-  options: [
-    'PRICE',
+  names: [
+    '<-',
+    'Save',
+    'SAll',
+    'DelK',
+    'DAll',
+    'Keys',
+    'CID',
+    9,
+    8,
+    7,
+    '+',
+    'Refl',
+    'Calc',
+    6,
+    5,
+    4,
+    '-',
+    'Rkey',
+    'Pay',
+    3,
+    2,
+    1,
+    '/',
+    'Mkey',
+    'Prc',
+    ',',
+    '0',
+    '.',
+    '*',
+    '=',
+  ],
+};
+
+/* 
+   'PRICE',
     'PAYMENT',
     'CALCULATE',
     'CID TOTAL',
@@ -14,5 +46,13 @@ export const buttons = {
     'DELETE KEY',
     'SAVE ALL CHANGE',
     'SAVE CHANGE',
-  ],
-};
+
+  
+   <- Save SAll delK DAll Keys
+  CID   9   8    7    +   Refl
+  Calc  6   5    4    -   Rkey
+  Pay   3   2    1    /   Mkey
+  Prc   ,   0    .    *    =
+
+
+*/

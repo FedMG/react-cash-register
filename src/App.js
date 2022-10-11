@@ -38,30 +38,11 @@ export default function App() {
         </div>
       </div>
 
-      <div style={cidStyle}>
-        <div style={{ gridRow: '3' }}>
-          {buttons.symbols.map((symbol) => (
-            <Button
-              key={symbol}
-              name={symbol}
-              handler={symbol === '=' ? getResult : buttonHandler}
-            />
-          ))}
-        </div>
-        <div style={{ gridRow: '4' }}>
-          {buttons.numbers.map((number) => (
-            <Button key={number} name={number} handler={buttonHandler} />
-          ))}
-        </div>
-        <div style={{ gridRow: '5' }}>
-          <Button name={'.'} />
-          <Button name={','} />
-        </div>
-        <div style={{ gridRow: '6' }}>
-          {buttons.options.map((option) => (
-            <Button key={option} name={option} handler={() => ''} />
-          ))}
-        </div>
+
+      <div style={{ display: 'grid', gridTemplateAreas: '"1 2 3 4 5 6"' }}>
+        {buttons.names.map((name) => (
+          <Button key={name} name={name} handler={buttonHandler} />
+        ))}
       </div>
     </div>
   );
